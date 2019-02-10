@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project Manager</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+
+<body>
+    {{#if currentUser}}
+        {{#if isAdmin}}
+        <header>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects/distribute">Projects</a></li>
+            <li><a href="/teams/distribute">Teams</a></li>
+            <li><a href="/teams/create">Create Team</a></li>
+            <li><a href="/projects/create">Create Project</a></li>
+            <div class="right">
+                <li>Welcome, {{currentUser.firstName}}!</li>
+                <li><a href="/user/profile">Profile</a></li>
+                <li>
+                    <form id="logout-form" action="/logout" method="post"></form>
+                    <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                </li>
+            </div>
+        </ul>
+        </header>
+        {{else}}
+        <header>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/user/projects">Projects</a></li>
+            <li><a href="/user/teams">Teams</a></li>
+            <div class="right">
+                <li>Welcome, {{currentUser.firstName}}!</li>
+                <li><a href="/user/profile">Profile</a></li>
+                <li>
+                    <form id="logout-form" action="/logout" method="post"></form>
+                    <a href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                </li>
+            </div>
+        </ul>
+    </header>
+        {{/if}}
+    {{else}}
+    <header>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <div class="right">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            </div>
+        </ul>
+    </header>
+    {{/if}}
+
+    <main>
+        {{#if globalError}}
+        <span>{{globalError}}</span>
+        {{/if}}
+        {{{body}}}
+    </main>
+    <footer>
+        Express Exam @SoftUni
+    </footer>
+
+</body>
+
+</html>
